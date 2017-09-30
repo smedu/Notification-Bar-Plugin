@@ -27,3 +27,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Copyright 2017 Orange Blossom Media, LLC.
 */
+
+/**
+ * Creates a link to the settings page under the WordPress Settings in the dashboard
+ */
+add_action( 'admin_menu', 'snb_general_settings_page' );
+function snb_general_settings_page() {
+
+    add_submenu_page(
+        'options-general.php',
+        __( 'Notifications Bar', 'notification-bar' ),
+        __( 'Notifications', 'notification-bar' ),
+        'manage_options',
+        'notification_bar',
+        'snb_render_settings_page'
+    );
+
+}
