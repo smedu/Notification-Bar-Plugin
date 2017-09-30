@@ -1,0 +1,20 @@
+.snb-notification-bar {
+    z-index: 1001;
+    position: fixed;
+    width: 100%;
+    background: #000;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.snb-notification-bar.display_top {
+	top: 0;
+}
+
+.snb-notification-bar.display_bottom {
+	bottom: 0;
+}
+
+.snb-notification-text {
+	padding: 10px;
+}
