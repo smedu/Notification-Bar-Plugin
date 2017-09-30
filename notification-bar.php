@@ -44,3 +44,30 @@ function snb_general_settings_page() {
     );
 
 }
+
+/**
+ * Creates the settings page
+ */
+function snb_render_settings_page() {
+    ?>
+    <!-- Create a header in the default WordPress 'wrap' container -->
+    <div class="wrap">
+
+        <h2><?php _e( 'WPORL Notification Bar Settings', 'notification-bar' ); ?></h2>
+
+        <form method="post" action="options.php">
+
+            <?php
+	        // Get settings for the plugin to display in the form
+            settings_fields( 'snb_general_settings' );
+            do_settings_sections( 'snb_general_settings' );
+
+            // Form submit button
+            submit_button();
+            ?>
+
+        </form>
+
+    </div><!-- /.wrap -->
+<?php
+}
