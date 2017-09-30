@@ -53,7 +53,7 @@ function snb_render_settings_page() {
     <!-- Create a header in the default WordPress 'wrap' container -->
     <div class="wrap">
 
-        <h2><?php _e( 'WPORL Notification Bar Settings', 'notification-bar' ); ?></h2>
+        <h2><?php _e( 'Notification Bar Settings', 'notification-bar' ); ?></h2>
 
         <form method="post" action="options.php">
 
@@ -121,5 +121,25 @@ function radio_input_callback( $radio_input ) {
 	}
 
     echo $input;
+
+}
+
+/**
+ * Displays the notification bar on the frontend of the site
+ */
+add_action( 'wp_footer', 'snb_display_notification_bar' );
+function snb_display_notification_bar() {
+
+	if ( !null == get_option( 'snb_general_settings' ) ) {
+
+		$options = get_option( 'snb_general_settings' );
+
+		?>
+		<div class="snb-notification-bar <?php echo $options['display_location']; ?>">
+			<div class="snb-notification-text"><?php echo $options['notification_text']; ?></div>
+		</div>
+		<?php
+
+	}
 
 }
