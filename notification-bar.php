@@ -130,17 +130,11 @@ function radio_input_callback( $radio_input ) {
 add_action( 'wp_footer', 'snb_display_notification_bar' );
 function snb_display_notification_bar() {
 
-	if ( !null == get_option( 'snb_general_settings' ) ) {
-
-		$options = get_option( 'snb_general_settings' );
-
-		?>
-		<div class="snb-notification-bar <?php echo $options['display_location']; ?>">
-			<div class="snb-notification-text"><?php echo $options['notification_text']; ?></div>
-		</div>
-		<?php
-
-	}
+    ?>
+	<div class="snb-notification-bar <?php echo get_theme_mod( 'display_location' ); ?>" style="background-color: <?php echo get_theme_mod( 'notification_bar_color' ); ?>;">
+        <div class="snb-notification-text" style="color: <?php echo get_theme_mod( 'notification_text_color' ); ?>;"><?php echo get_theme_mod( 'notification_text' ); ?></div>
+    </div>
+    <?php
 
 }
 
@@ -160,17 +154,11 @@ function snb_scripts() {
 add_filter( 'body_class', 'snb_body_class' , 20 );
 function snb_body_class( $classes ) {
 
-    if ( !null == get_option( 'snb_general_settings' ) ) {
+    if ( get_theme_mod( 'display_location' ) === 'display_top' ||  get_theme_mod( 'display_location' )=== 'display_bottom' ) {
 
-        $options = get_option( 'snb_general_settings' );
+	    $classes[] = 'notification-bar';
 
-        if ( $options['display_location'] === 'display_top' ||  $options['display_location'] === 'display_bottom' ) {
-
-            $classes[] = 'notification-bar';
-
-        }
-
-    }
+	}
 
     return $classes;
 
