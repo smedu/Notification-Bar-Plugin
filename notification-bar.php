@@ -143,3 +143,35 @@ function snb_display_notification_bar() {
 	}
 
 }
+
+/**
+ * Loads plugin scripts and styles
+ */
+add_action( 'wp_enqueue_scripts', 'snb_scripts' );
+function snb_scripts() {
+
+	wp_enqueue_style( 'snb-notification-bar',  plugin_dir_url( __FILE__ ) . 'notification-bar.css', array(), '1.0.0' );
+
+}
+
+/**
+ * Adds body class to notification bar pages
+ */
+add_filter( 'body_class', 'snb_body_class' , 20 );
+function snb_body_class( $classes ) {
+
+    if ( !null == get_option( 'snb_general_settings' ) ) {
+
+        $options = get_option( 'snb_general_settings' );
+
+        if ( $options['display_location'] === 'display_top' ||  $options['display_location'] === 'display_bottom' ) {
+
+            $classes[] = 'notification-bar';
+
+        }
+
+    }
+
+    return $classes;
+
+}
